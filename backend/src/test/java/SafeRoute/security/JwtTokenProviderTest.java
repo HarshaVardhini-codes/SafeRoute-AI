@@ -54,4 +54,3 @@ class JwtTokenProviderTest {
         assertTrue(jwtTokenProvider.isTokenExpired(expiredToken));
     }
 }
-
