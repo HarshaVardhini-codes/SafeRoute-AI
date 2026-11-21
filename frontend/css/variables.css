@@ -1,0 +1,141 @@
+/**
+ * SafeRoute AI - Design Tokens & Variables
+ * Theme: Premium Dark Navy with Emerald Green Accent
+ */
+
+:root {
+  /* ==========================================================================
+     Color Palette
+     ========================================================================== */
+  
+  /* Primary Backgrounds */
+  --bg-app: #080C15;
+  --bg-primary: #0B0F19;
+  --bg-secondary: #0F1626;
+  --bg-tertiary: #141C30;
+  
+  /* Charcoal & Slate Surfaces */
+  --surface-card: #131B2E;
+  --surface-card-hover: #18233C;
+  --surface-elevated: #1B2642;
+  --surface-glass: rgba(19, 27, 46, 0.78);
+  --surface-overlay: rgba(8, 12, 21, 0.85);
+  
+  /* Emerald Green Accents (Safety & Primary Branding) */
+  --accent-primary: #10B981;
+  --accent-primary-hover: #059669;
+  --accent-primary-active: #047857;
+  --accent-primary-subtle: rgba(16, 185, 129, 0.12);
+  --accent-primary-glow: rgba(16, 185, 129, 0.25);
+  --accent-primary-light: #34D399;
+  --accent-primary-dark: #064E3B;
+  
+  /* Hazard & Safety Indicators */
+  --hazard-safe: #10B981;
+  --hazard-safe-bg: rgba(16, 185, 129, 0.14);
+  
+  --hazard-caution: #F59E0B;
+  --hazard-caution-hover: #D97706;
+  --hazard-caution-bg: rgba(245, 158, 11, 0.14);
+  --hazard-caution-glow: rgba(245, 158, 11, 0.25);
+  
+  --hazard-danger: #EF4444;
+  --hazard-danger-hover: #DC2626;
+  --hazard-danger-bg: rgba(239, 68, 68, 0.14);
+  --hazard-danger-glow: rgba(239, 68, 68, 0.25);
+  
+  --color-info: #3B82F6;
+  --color-info-bg: rgba(59, 130, 246, 0.14);
+  --color-ai: #8B5CF6;
+  --color-ai-bg: rgba(139, 92, 246, 0.14);
+  
+  /* Text & Typography */
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-muted: #64748B;
+  --text-inverse: #0B0F19;
+  --text-accent: #34D399;
+  
+  /* Borders & Dividers */
+  --border-subtle: rgba(255, 255, 255, 0.07);
+  --border-default: rgba(255, 255, 255, 0.12);
+  --border-strong: rgba(255, 255, 255, 0.22);
+  --border-emerald: rgba(16, 185, 129, 0.35);
+  --border-danger: rgba(239, 68, 68, 0.35);
+  --border-caution: rgba(245, 158, 11, 0.35);
+
+  /* ==========================================================================
+     Typography Standards
+     ========================================================================== */
+  --font-family-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  
+  --font-size-xs: 0.75rem;     /* 12px */
+  --font-size-sm: 0.84375rem;  /* 13.5px */
+  --font-size-base: 0.9375rem; /* 15px */
+  --font-size-md: 1.0625rem;   /* 17px */
+  --font-size-lg: 1.25rem;     /* 20px */
+  --font-size-xl: 1.5rem;      /* 24px */
+  --font-size-2xl: 1.875rem;   /* 30px */
+  
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.5;
+  --line-height-relaxed: 1.65;
+
+  /* ==========================================================================
+     Spatial System & Radii
+     ========================================================================== */
+  --space-2xs: 0.25rem;  /* 4px */
+  --space-xs: 0.5rem;    /* 8px */
+  --space-sm: 0.75rem;   /* 12px */
+  --space-md: 1rem;      /* 16px */
+  --space-lg: 1.5rem;    /* 24px */
+  --space-xl: 2rem;      /* 32px */
+  --space-2xl: 2.5rem;   /* 40px */
+  
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+  --radius-full: 9999px;
+
+  /* ==========================================================================
+     Shadows & Elevations
+     ========================================================================== */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.25);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.35);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.45);
+  --shadow-xl: 0 16px 36px rgba(0, 0, 0, 0.55);
+  --shadow-emerald: 0 4px 20px rgba(16, 185, 129, 0.25);
+  --shadow-danger: 0 4px 20px rgba(239, 68, 68, 0.25);
+  --shadow-caution: 0 4px 20px rgba(245, 158, 11, 0.25);
+  
+  /* ==========================================================================
+     Transitions & Timing
+     ========================================================================== */
+  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-smooth: 350ms cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* ==========================================================================
+     Layout Measurements & Z-indices
+     ========================================================================== */
+  --header-height: 64px;
+  --sidebar-width: 260px;
+  --panel-width: 420px;
+  
+  --z-base: 1;
+  --z-map: 10;
+  --z-map-controls: 20;
+  --z-panel: 30;
+  --z-header: 40;
+  --z-dropdown: 50;
+  --z-modal: 100;
+  --z-toast: 150;
+}

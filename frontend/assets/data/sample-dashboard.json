@@ -1,0 +1,175 @@
+{
+  "_meta": {
+    "isDemoData": true,
+    "dataSource": "SafeRoute AI Local Demo Simulator",
+    "notice": "All metrics, incidents, reports, and routes below are illustrative demo data. They are not live or verified real-world information."
+  },
+  "overviewCards": {
+    "safetyScore": {
+      "value": "84/100",
+      "status": "Overall Safety Overview",
+      "trend": "+3.2% safer vs last week",
+      "type": "emerald"
+    },
+    "nearbyHazards": {
+      "value": "14",
+      "status": "Nearby Hazards",
+      "trend": "5 resolved in last 6 hrs",
+      "type": "amber"
+    },
+    "communityReports": {
+      "value": "48",
+      "status": "Recent Community Reports",
+      "trend": "92% verified by commuters",
+      "type": "blue"
+    },
+    "safeRoutes": {
+      "value": "8",
+      "status": "Safe Routes Available",
+      "trend": "100% well-lit corridors",
+      "type": "emerald"
+    }
+  },
+  "nearbyHazards": [
+    {
+      "id": "haz-001",
+      "category": "Poor Street Lighting",
+      "typeId": "poor_lighting",
+      "title": "4 Consecutive Streetlights Non-functional",
+      "location": "8th Main Road, 4th Block",
+      "reportTime": "15 mins ago",
+      "severity": "medium",
+      "severityLabel": "Moderate Caution",
+      "coordinates": [12.9750, 77.5980],
+      "confirmations": 8,
+      "isVerified": true
+    },
+    {
+      "id": "haz-002",
+      "category": "Road Accident",
+      "typeId": "road_accident",
+      "title": "Vehicle Collision Cleared, Debris on Left Lane",
+      "location": "Outer Ring Road Junction 4",
+      "reportTime": "28 mins ago",
+      "severity": "high",
+      "severityLabel": "High Risk",
+      "coordinates": [12.9810, 77.6020],
+      "confirmations": 14,
+      "isVerified": true
+    },
+    {
+      "id": "haz-003",
+      "category": "Waterlogging",
+      "typeId": "waterlogging",
+      "title": "Rainwater Stagnation (Approx 6-8 inches)",
+      "location": "Subway Underpass, 12th Cross",
+      "reportTime": "45 mins ago",
+      "severity": "medium",
+      "severityLabel": "Moderate Caution",
+      "coordinates": [12.9680, 77.5890],
+      "confirmations": 19,
+      "isVerified": true
+    },
+    {
+      "id": "haz-004",
+      "category": "Broken Sidewalk",
+      "typeId": "broken_sidewalk",
+      "title": "Exposed Rebar and Missing Pavement Slabs",
+      "location": "Hospital Road, West Pedestrian Lane",
+      "reportTime": "1 hour ago",
+      "severity": "low",
+      "severityLabel": "Pedestrian Hazard",
+      "coordinates": [12.9640, 77.6010],
+      "confirmations": 6,
+      "isVerified": false
+    },
+    {
+      "id": "haz-005",
+      "category": "Unsafe Pedestrian Crossing",
+      "typeId": "unsafe_crossing",
+      "title": "Faded Zebra Markings & Malfunctioning Walk Signal",
+      "location": "Central Boulevard Crossing",
+      "reportTime": "2 hours ago",
+      "severity": "medium",
+      "severityLabel": "Moderate Caution",
+      "coordinates": [12.9730, 77.5850],
+      "confirmations": 11,
+      "isVerified": true
+    }
+  ],
+  "recentCommunityReports": [
+    {
+      "id": "rep-201",
+      "category": "Poor Street Lighting",
+      "typeId": "poor_lighting",
+      "description": "Reported entire lane pitch dark after 7 PM. Recommended rerouting via main avenue.",
+      "location": "5th Cross, Indiranagar",
+      "timestamp": "8 mins ago",
+      "verificationStatus": "Community Verified",
+      "verified": true,
+      "votes": 12
+    },
+    {
+      "id": "rep-202",
+      "category": "Isolated Area",
+      "typeId": "isolated_area",
+      "description": "Deserted construction stretch with poor visibility. Avoid late night walking.",
+      "location": "Near Metro Pillar 142",
+      "timestamp": "22 mins ago",
+      "verificationStatus": "Pending Verification",
+      "verified": false,
+      "votes": 4
+    },
+    {
+      "id": "rep-203",
+      "category": "Waterlogging",
+      "typeId": "waterlogging",
+      "description": "Drainage overflow causing pedestrian walkway blockage. Two-wheelers skidding.",
+      "location": "100ft Road Underpass",
+      "timestamp": "40 mins ago",
+      "verificationStatus": "Community Verified",
+      "verified": true,
+      "votes": 23
+    },
+    {
+      "id": "rep-204",
+      "category": "Heavy Traffic",
+      "typeId": "heavy_traffic",
+      "description": "Signal failure causing severe bottleneck and pedestrian cross obstruction.",
+      "location": "Silk Board Junction",
+      "timestamp": "1 hour ago",
+      "verificationStatus": "Community Verified",
+      "verified": true,
+      "votes": 31
+    }
+  ],
+  "recentRoutes": [
+    {
+      "id": "route-001",
+      "from": "Indiranagar",
+      "to": "Cubbon Park",
+      "safetyScore": 91,
+      "distance": "5.2 km",
+      "duration": "18 min",
+      "timestamp": "Demo route · Today"
+    },
+    {
+      "id": "route-002",
+      "from": "MG Road",
+      "to": "Lalbagh Botanical Garden",
+      "safetyScore": 87,
+      "distance": "4.1 km",
+      "duration": "16 min",
+      "timestamp": "Demo route · Yesterday"
+    },
+    {
+      "id": "route-003",
+      "from": "Jayanagar",
+      "to": "Cubbon Park",
+      "safetyScore": 89,
+      "distance": "7.4 km",
+      "duration": "24 min",
+      "timestamp": "Demo route · 2 days ago"
+    }
+  ]
+}

@@ -1,3 +1,555 @@
-<h1>
-    HELLO WORLD
-</h1>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0B0F19">
+    <meta name="description"
+        content="SafeRoute AI - AI-powered community-driven navigation application prioritizing safety over sheer distance.">
+    <title>SafeRoute AI — Travel Smarter. Travel Safer.</title>
+
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Leaflet.js Official CDN Stylesheet (v1.9.4) -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- SafeRoute AI Design System Stylesheet -->
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Main Application Header -->
+        <header class="app-header">
+            <div class="content-wrapper">
+                <nav class="navbar" aria-label="Main Navigation">
+                    <!-- Brand Logo -->
+                    <a href="#dashboard" class="brand" aria-label="SafeRoute AI Home">
+                        <div class="brand-icon-wrap" aria-hidden="true">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                <path d="m9 12 2 2 4-4" />
+                            </svg>
+                        </div>
+                        <div>
+                            <div class="brand-title">SafeRoute <span>AI</span></div>
+                            <span class="brand-subtitle">Don't just find the shortest route. Find a safer way.</span>
+                        </div>
+                    </a>
+
+                    <!-- Navigation Links -->
+                    <ul class="nav-links" id="nav-links" role="menubar">
+                        <li role="none">
+                            <a href="#dashboard" class="nav-link active" data-view="dashboard" role="menuitem">
+                                <span class="nav-link-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect width="7" height="9" x="3" y="3" rx="1" />
+                                        <rect width="7" height="5" x="14" y="3" rx="1" />
+                                        <rect width="7" height="9" x="14" y="12" rx="1" />
+                                        <rect width="7" height="5" x="3" y="16" rx="1" />
+                                    </svg>
+                                </span>
+                                Dashboard
+                            </a>
+                        </li>
+                        <li role="none">
+                            <a href="#route-explorer" class="nav-link" data-view="route-explorer" role="menuitem">
+                                <span class="nav-link-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="6" cy="19" r="3" />
+                                        <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" />
+                                        <circle cx="18" cy="5" r="3" />
+                                    </svg>
+                                </span>
+                                Route Explorer
+                            </a>
+                        </li>
+                        <li role="none">
+                            <a href="#safety-map" class="nav-link" data-view="safety-map" role="menuitem">
+                                <span class="nav-link-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <polygon points="3 6 9 3 15 6 21 3 21 18 15 21 9 18 3 21" />
+                                        <line x1="9" x2="9" y1="3" y2="18" />
+                                        <line x1="15" x2="15" y1="6" y2="21" />
+                                    </svg>
+                                </span>
+                                Safety Map
+                            </a>
+                        </li>
+                        <li role="none">
+                            <a href="#hazard-report" class="nav-link" data-view="hazard-report" role="menuitem">
+                                <span class="nav-link-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                        <line x1="12" y1="9" x2="12" y2="13" />
+                                        <line x1="12" x2="12.01" y1="17" y2="17" />
+                                    </svg>
+                                </span>
+                                Hazard Report
+                            </a>
+                        </li>
+                        <li role="none">
+                            <a href="#alerts" class="nav-link" data-view="alerts" role="menuitem">
+                                <span class="nav-link-icon" aria-hidden="true">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
+                                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                                    </svg>
+                                </span>
+                                Live Alerts
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Header Right Badges & Controls -->
+                    <div class="header-actions">
+                        <!-- Demo Mode Badge (Rule 8) -->
+                        <span class="badge badge-demo" id="demo-mode-badge" title="Running with local demo dataset">
+                            <span class="pulse-dot amber"></span>
+                            Demo Mode
+                        </span>
+                        <!-- Spring Boot Ready Indicator -->
+                        <span class="badge badge-info" title="Spring Boot REST API endpoint configured">
+                            <span class="pulse-dot emerald"></span>
+                            Spring Boot Ready
+                        </span>
+                        <!-- Mobile Navigation Toggle -->
+                        <button class="mobile-nav-toggle" id="mobile-nav-toggle" aria-label="Toggle Navigation Menu"
+                            aria-controls="nav-links" aria-expanded="false">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="4" x2="20" y1="12" y2="12" />
+                                <line x1="4" x2="20" y1="6" y2="6" />
+                                <line x1="4" x2="20" y1="18" y2="18" />
+                            </svg>
+                        </button>
+                    </div>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <div class="content-wrapper dashboard-page" id="view-dashboard">
+                <!-- Welcome / Hero Section -->
+                <section class="dashboard-hero" aria-labelledby="dashboard-title">
+                    <div class="dashboard-hero-tag">
+                        <span class="badge badge-demo"><span class="pulse-dot amber"></span>Demo Simulation Data</span>
+                        <span class="badge badge-info" id="app-version-badge">v1.0.0-dev</span>
+                    </div>
+                    <h1 class="dashboard-hero-title" id="dashboard-title">Travel Smarter. Travel Safer.</h1>
+                    <p class="dashboard-hero-subtitle">
+                        AI-powered, community-driven navigation that prioritizes your safety on every journey.
+                    </p>
+
+                    <!-- Location and Destination Search Widget -->
+                    <form class="search-widget-container" id="route-search-form" aria-label="Find a safer route">
+                        <div class="search-form-row">
+                            <label class="search-input-wrapper">
+                                <span class="sr-only">Starting location</span>
+                                <span class="search-input-icon start" aria-hidden="true" title="Starting Location">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z" />
+                                        <circle cx="12" cy="10" r="3" />
+                                    </svg>
+                                </span>
+                                <input class="search-field" id="search-start" name="start" type="text"
+                                    placeholder="Starting Location (e.g. Indiranagar)" autocomplete="off">
+                            </label>
+
+                            <!-- Swap Locations Button -->
+                            <button class="btn-swap" id="btn-swap-locations" type="button"
+                                aria-label="Swap starting location and destination" title="Swap locations">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <path d="M7 7h14l-4-4" />
+                                    <path d="m21 7-4 4" />
+                                    <path d="M17 17H3l4 4" />
+                                    <path d="m3 17 4-4" />
+                                </svg>
+                            </button>
+
+                            <label class="search-input-wrapper">
+                                <span class="sr-only">Destination</span>
+                                <span class="search-input-icon dest" aria-hidden="true" title="Destination">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                                        <line x1="4" y1="22" x2="4" y2="15" />
+                                    </svg>
+                                </span>
+                                <input class="search-field" id="search-dest" name="destination" type="text"
+                                    placeholder="Destination (e.g. Cubbon Park)" autocomplete="off">
+                            </label>
+
+                            <!-- Find Safe Route Button -->
+                            <button class="btn-find-route" id="btn-find-safe-route" type="submit">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                                </svg>
+                                Find Safe Route
+                            </button>
+                        </div>
+
+                        <!-- Search Validation Alert -->
+                        <div class="validation-message" id="search-validation-msg" role="status" aria-live="polite">
+                        </div>
+
+                        <!-- Quick Sample Route Suggestions -->
+                        <div class="quick-queries-row" aria-label="Sample routes">
+                            <span>Try a sample:</span>
+                            <button class="quick-query-pill" type="button" data-from="Indiranagar, Bengaluru"
+                                data-to="Cubbon Park, Bengaluru">Indiranagar → Cubbon Park</button>
+                            <button class="quick-query-pill" type="button" data-from="MG Road, Bengaluru"
+                                data-to="Lalbagh Botanical Garden, Bengaluru">MG Road → Lalbagh</button>
+                        </div>
+                    </form>
+                </section>
+
+                <!-- 4 Quick Safety Overview Cards -->
+                <section aria-labelledby="safety-overview-title">
+                    <div class="dashboard-section-heading">
+                        <div>
+                            <h2 id="safety-overview-title">Quick Safety Overview</h2>
+                            <p>Real-time safety telemetry, active hazards, and community verification indicators.</p>
+                        </div>
+                        <span class="badge badge-demo">Demo Dataset</span>
+                    </div>
+
+                    <div class="overview-grid">
+                        <!-- Card 1: Overall Safety Overview -->
+                        <article class="overview-card" id="card-safety-score">
+                            <div class="overview-card-top">
+                                <div class="overview-icon-box emerald" aria-hidden="true" title="Safety Score">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                                        <path d="m9 12 2 2 4-4" />
+                                    </svg>
+                                </div>
+                                <span class="badge badge-demo">Demo</span>
+                            </div>
+                            <div class="overview-value">84/100</div>
+                            <div class="overview-title">Overall Safety Overview</div>
+                            <div class="overview-trend positive">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+                                    <polyline points="16 7 22 7 22 13" />
+                                </svg>
+                                <span>+3.2% safer vs last week</span>
+                            </div>
+                        </article>
+
+                        <!-- Card 2: Nearby Hazards -->
+                        <article class="overview-card" id="card-nearby-hazards">
+                            <div class="overview-card-top">
+                                <div class="overview-icon-box amber" aria-hidden="true" title="Nearby Hazards">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path
+                                            d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z" />
+                                        <line x1="12" y1="9" x2="12" y2="13" />
+                                        <line x1="12" y1="17" x2="12.01" y2="17" />
+                                    </svg>
+                                </div>
+                                <span class="badge badge-demo">Demo</span>
+                            </div>
+                            <div class="overview-value">14</div>
+                            <div class="overview-title">Nearby Hazards</div>
+                            <div class="overview-trend">
+                                <span class="pulse-dot amber"></span>
+                                <span>5 resolved in last 6 hrs</span>
+                            </div>
+                        </article>
+
+                        <!-- Card 3: Recent Community Reports -->
+                        <article class="overview-card" id="card-community-reports">
+                            <div class="overview-card-top">
+                                <div class="overview-icon-box blue" aria-hidden="true" title="Community Reports">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                                        <circle cx="9" cy="7" r="4" />
+                                        <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+                                    </svg>
+                                </div>
+                                <span class="badge badge-demo">Demo</span>
+                            </div>
+                            <div class="overview-value">48</div>
+                            <div class="overview-title">Recent Community Reports</div>
+                            <div class="overview-trend">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                                    <path d="m9 12 2 2 4-4" />
+                                    <circle cx="12" cy="12" r="10" />
+                                </svg>
+                                <span>92% verified by commuters</span>
+                            </div>
+                        </article>
+
+                        <!-- Card 4: Safe Routes Available -->
+                        <article class="overview-card" id="card-safe-routes">
+                            <div class="overview-card-top">
+                                <div class="overview-icon-box emerald" aria-hidden="true" title="Safe Routes Available">
+                                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                                        <circle cx="6" cy="19" r="3" />
+                                        <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" />
+                                        <circle cx="18" cy="5" r="3" />
+                                    </svg>
+                                </div>
+                                <span class="badge badge-demo">Demo</span>
+                            </div>
+                            <div class="overview-value">8</div>
+                            <div class="overview-title">Safe Routes Available</div>
+                            <div class="overview-trend positive">
+                                <span class="pulse-dot emerald"></span>
+                                <span>100% well-lit corridors</span>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+
+                <!-- Row 1: Map Preview & Nearby Hazards -->
+                <div class="dashboard-split-layout">
+                    <!-- Leaflet Map Preview Card -->
+                    <section class="map-preview-card" aria-labelledby="map-section-title">
+                        <div class="map-card-header">
+                            <div>
+                                <h2 class="feed-card-title" id="map-section-title">
+                                    <span class="pulse-dot emerald"></span>
+                                    Safety Map Preview
+                                </h2>
+                                <p class="card-subtitle">Active verified hazard markers across Bengaluru</p>
+                            </div>
+                            <span class="badge badge-emerald">Interactive Leaflet</span>
+                        </div>
+                        <div class="map-canvas-wrapper">
+                            <div id="dashboard-map" role="region" aria-label="Map showing sample nearby hazards"></div>
+                            <p class="map-status" id="dashboard-map-status" role="status" aria-live="polite" hidden></p>
+                        </div>
+                        <div class="map-legend-bar">
+                            <div class="legend-items" aria-label="Map legend">
+                                <span class="legend-item"><span class="legend-indicator red"></span>High Risk</span>
+                                <span class="legend-item"><span class="legend-indicator amber"></span>Moderate
+                                    Caution</span>
+                                <span class="legend-item"><span class="legend-indicator emerald"></span>Safe
+                                    Corridor</span>
+                            </div>
+                            <span class="badge badge-demo">Markers are Demo Data</span>
+                        </div>
+                    </section>
+
+                    <!-- Nearby Hazards List -->
+                    <section class="feed-card" aria-labelledby="nearby-hazards-title">
+                        <div class="feed-card-header">
+                            <div>
+                                <h2 class="feed-card-title" id="nearby-hazards-title">Nearby Hazards</h2>
+                                <p class="card-subtitle">Recent incidents: street lighting, accidents, waterlogging</p>
+                            </div>
+                            <span class="badge badge-demo">Demo</span>
+                        </div>
+                        <div class="feed-list" id="nearby-hazards-list"></div>
+                    </section>
+                </div>
+
+                <!-- Row 2: Recent Community Reports & Route History -->
+                <div class="dashboard-split-layout dashboard-secondary-grid">
+                    <!-- Recent Community Reports -->
+                    <section class="feed-card" aria-labelledby="community-reports-title">
+                        <div class="feed-card-header">
+                            <div>
+                                <h2 class="feed-card-title" id="community-reports-title">Recent Community Reports</h2>
+                                <p class="card-subtitle">Commuter-submitted hazard feedback & verification status</p>
+                            </div>
+                            <span class="badge badge-demo">Demo</span>
+                        </div>
+                        <div class="feed-list" id="community-reports-list"></div>
+                    </section>
+
+                    <!-- Recent Routes -->
+                    <section class="feed-card" aria-labelledby="recent-routes-title">
+                        <div class="feed-card-header">
+                            <div>
+                                <h2 class="feed-card-title" id="recent-routes-title">Recent Routes</h2>
+                                <p class="card-subtitle">Calculated safe journeys & estimated safety scores</p>
+                            </div>
+                            <span class="badge badge-demo">Demo</span>
+                        </div>
+                        <div class="feed-list" id="recent-routes-list"></div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- Route Explorer View (Stage 3) -->
+            <div class="content-wrapper route-explorer-page" id="view-route-explorer" hidden>
+                <!-- Explorer Header -->
+                <header class="explorer-header" aria-labelledby="explorer-main-title">
+                    <div class="explorer-header-tag">
+                        <span class="badge badge-emerald"><span class="pulse-dot emerald"></span>Stage 3 Active</span>
+                        <span class="badge badge-demo">SIMULATED DEMO DATA</span>
+                    </div>
+                    <h1 class="explorer-title" id="explorer-main-title">Route Explorer & Safety Comparison</h1>
+                    <p class="explorer-subtitle">
+                        Evaluate multiple travel paths based on estimated safety conditions, street lighting quality,
+                        and reported hazards. All scores and telemetry are simulated demo data.
+                    </p>
+                </header>
+
+                <!-- Two-Column Explorer Layout -->
+                <div class="explorer-layout">
+                    <!-- Left Column: Search & Route Cards Stack -->
+                    <aside class="explorer-sidebar" aria-label="Route Search and Options">
+                        <!-- Route Search Card -->
+                        <form class="explorer-search-card" id="explorer-search-form" aria-label="Search routes">
+                            <div class="explorer-search-header">
+                                <h2 class="explorer-search-title">Journey Coordinates</h2>
+                                <span class="badge badge-demo">Demo</span>
+                            </div>
+                            <div class="explorer-inputs-stack">
+                                <div class="explorer-field-wrapper">
+                                    <span class="explorer-field-icon start" aria-hidden="true"
+                                        title="Starting Location">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M12 21.7C17.3 17 20 13 20 10a8 8 0 1 0-16 0c0 3 2.7 7 8 11.7z" />
+                                            <circle cx="12" cy="10" r="3" />
+                                        </svg>
+                                    </span>
+                                    <input class="explorer-input" id="explorer-start" name="start" type="text"
+                                        placeholder="Starting Location (e.g. Indiranagar)" autocomplete="off">
+                                </div>
+
+                                <button class="btn-swap-explorer" id="btn-swap-explorer" type="button"
+                                    aria-label="Swap starting location and destination" title="Swap locations">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                        stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                                        aria-hidden="true">
+                                        <path d="M7 7h14l-4-4" />
+                                        <path d="m21 7-4 4" />
+                                        <path d="M17 17H3l4 4" />
+                                        <path d="m3 17 4-4" />
+                                    </svg>
+                                </button>
+
+                                <div class="explorer-field-wrapper">
+                                    <span class="explorer-field-icon dest" aria-hidden="true" title="Destination">
+                                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="2.2" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z" />
+                                            <line x1="4" y1="22" x2="4" y2="15" />
+                                        </svg>
+                                    </span>
+                                    <input class="explorer-input" id="explorer-dest" name="destination" type="text"
+                                        placeholder="Destination (e.g. Cubbon Park)" autocomplete="off">
+                                </div>
+                            </div>
+
+                            <button class="btn-find-routes" id="btn-find-routes" type="submit">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                    stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"
+                                    aria-hidden="true">
+                                    <polygon points="3 11 22 2 13 21 11 13 3 11" />
+                                </svg>
+                                Find Safe Routes
+                            </button>
+
+                            <div class="explorer-validation-msg" id="explorer-validation-msg" role="status"
+                                aria-live="polite"></div>
+
+                            <div class="explorer-quick-queries" aria-label="Sample routes">
+                                <span>Demo routes:</span>
+                                <button class="explorer-quick-pill" type="button" data-from="Indiranagar, Bengaluru"
+                                    data-to="Cubbon Park, Bengaluru">Indiranagar &rarr; Cubbon Park</button>
+                                <button class="explorer-quick-pill" type="button" data-from="MG Road, Bengaluru"
+                                    data-to="Lalbagh Botanical Garden, Bengaluru">MG Road &rarr; Lalbagh</button>
+                            </div>
+                        </form>
+
+                        <!-- Route Comparison Cards Stack -->
+                        <section class="routes-comparison-section" aria-labelledby="routes-section-title">
+                            <div class="routes-section-heading">
+                                <h2 class="routes-section-title" id="routes-section-title">Available Routes</h2>
+                                <span class="badge badge-demo">Simulated Choices</span>
+                            </div>
+                            <div class="routes-cards-stack" id="routes-cards-stack">
+                                <!-- Dynamically populated by RouteView -->
+                            </div>
+                        </section>
+                    </aside>
+
+                    <!-- Right Column: Interactive Map -->
+                    <section class="explorer-map-container" aria-label="Interactive Route Map">
+                        <div class="explorer-map-card">
+                            <div class="explorer-map-header">
+                                <div class="explorer-map-title">
+                                    <span class="pulse-dot emerald"></span>
+                                    Route Geometry & Safety Map
+                                </div>
+                                <span class="badge badge-emerald">OpenStreetMap</span>
+                            </div>
+                            <div class="explorer-map-canvas-wrapper">
+                                <div id="route-explorer-map" role="region"
+                                    aria-label="Interactive map displaying evaluated route alternatives"></div>
+                            </div>
+                            <div class="explorer-map-legend">
+                                <div class="explorer-legend-items" aria-label="Route map legend">
+                                    <span class="explorer-legend-item"><span
+                                            class="route-legend-line selected"></span>Selected Safe Route</span>
+                                    <span class="explorer-legend-item"><span
+                                            class="route-legend-line alternative"></span>Alternative Route</span>
+                                    <span class="explorer-legend-item"><span
+                                            class="route-legend-line caution"></span>Caution Route</span>
+                                </div>
+                                <span class="badge badge-demo">SIMULATED DEMO DATA</span>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <p class="sr-only" id="navigation-status" role="status" aria-live="polite"></p>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <div class="content-wrapper">
+                <p>SafeRoute AI &bull; Member 2: Frontend Engineering &bull; College Major Project</p>
+                <p style="margin-top: 4px; font-size: 0.72rem; color: var(--text-muted);">
+                    Leaflet.js & OpenStreetMap &bull; Demo Simulation Active &bull; Prepared for Java Spring Boot REST
+                    API
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Leaflet.js Official CDN JavaScript (v1.9.4) -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Application Bootstrap (ES6 Module) -->
+    <script type="module" src="js/app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+/**
+ * SafeRoute AI - Badges & Status Indicators
+ */
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.25rem 0.65rem;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  border-radius: var(--radius-full);
+  line-height: 1;
+  letter-spacing: 0.02em;
+}
+
+/* Emerald (Safe) */
+.badge-emerald {
+  background: var(--hazard-safe-bg);
+  color: var(--accent-primary-light);
+  border: 1px solid var(--border-emerald);
+}
+
+/* Amber (Caution / Moderate) */
+.badge-amber {
+  background: var(--hazard-caution-bg);
+  color: var(--hazard-caution);
+  border: 1px solid var(--border-caution);
+}
+
+/* Red (Danger / Hazard) */
+.badge-red {
+  background: var(--hazard-danger-bg);
+  color: var(--hazard-danger);
+  border: 1px solid var(--border-danger);
+}
+
+/* Info Blue */
+.badge-info {
+  background: var(--color-info-bg);
+  color: var(--color-info);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+/* Explicit Demo Data Badge (Rule 8 Compliance) */
+.badge-demo {
+  background: rgba(139, 92, 246, 0.15);
+  color: #C4B5FD;
+  border: 1px solid rgba(139, 92, 246, 0.35);
+  text-transform: uppercase;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  font-weight: var(--font-weight-bold);
+}
+
+/* Pulse Dot for Live Indicators */
+.pulse-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.pulse-dot.emerald {
+  background-color: var(--accent-primary);
+  box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  animation: pulse-emerald 2s infinite;
+}
+
+.pulse-dot.amber {
+  background-color: var(--hazard-caution);
+  box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+  animation: pulse-amber 2s infinite;
+}
+
+@keyframes pulse-emerald {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(16, 185, 129, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0);
+  }
+}
+
+@keyframes pulse-amber {
+  0% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7);
+  }
+  70% {
+    transform: scale(1);
+    box-shadow: 0 0 0 6px rgba(245, 158, 11, 0);
+  }
+  100% {
+    transform: scale(0.95);
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0);
+  }
+}
+

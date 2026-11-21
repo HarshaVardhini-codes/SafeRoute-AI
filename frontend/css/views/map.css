@@ -1,0 +1,264 @@
+/**
+ * SafeRoute AI - Leaflet Map View & Marker Styles
+ * Integrates Leaflet controls and popups with the dark navy design system
+ */
+
+.map-preview-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+}
+
+.map-card-header {
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-card);
+}
+
+.map-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 420px;
+  background: var(--bg-app);
+}
+
+#dashboard-map {
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-map);
+}
+
+.map-status {
+  position: absolute;
+  z-index: var(--z-map-controls);
+  inset: auto var(--space-md) var(--space-md);
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--border-caution);
+  border-radius: var(--radius-sm);
+  background: var(--surface-overlay);
+  color: var(--text-primary);
+  font-size: var(--font-size-xs);
+}
+
+.map-status[hidden] {
+  display: none;
+}
+
+.leaflet-control-attribution,
+.leaflet-control-zoom a {
+  background: var(--surface-card) !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--border-default) !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--accent-primary-light) !important;
+}
+
+@media (max-width: 768px) {
+  .map-canvas-wrapper {
+    height: 320px;
+  }
+}
+
+/* ==========================================================================
+   Map Legend Bar
+   ========================================================================== */
+.map-legend-bar {
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--surface-elevated);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.legend-items {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.legend-indicator.emerald {
+  background: var(--accent-primary);
+  box-shadow: 0 0 8px var(--accent-primary-glow);
+}
+
+.legend-indicator.amber {
+  background: var(--hazard-caution);
+  box-shadow: 0 0 8px var(--hazard-caution-glow);
+}
+
+.legend-indicator.red {
+  background: var(--hazard-danger);
+  box-shadow: 0 0 8px var(--hazard-danger-glow);
+}
+
+/* ==========================================================================
+   Custom Glowing Hazard Markers
+   ========================================================================== */
+.custom-hazard-marker-container {
+  background: transparent !important;
+  border: none !important;
+}
+
+.custom-hazard-pin {
+  width: 34px;
+  height: 34px;
+  border-radius: 50% 50% 50% 0;
+  transform: rotate(-45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.custom-hazard-pin:hover {
+  transform: rotate(-45deg) scale(1.15);
+}
+
+.custom-hazard-pin .pin-icon {
+  transform: rotate(45deg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-hazard-pin.marker-caution {
+  background: var(--hazard-caution);
+  color: #111827;
+  border: 2px solid #FFFFFF;
+}
+
+.custom-hazard-pin.marker-danger {
+  background: var(--hazard-danger);
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+}
+
+/* Pulsing wave behind marker */
+.custom-hazard-pin .pin-pulse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  animation: pinPulse 2s infinite ease-out;
+}
+
+.custom-hazard-pin.marker-caution .pin-pulse {
+  box-shadow: 0 0 0 4px rgba(245, 158, 11, 0.4);
+}
+
+.custom-hazard-pin.marker-danger .pin-pulse {
+  box-shadow: 0 0 0 4px rgba(239, 68, 68, 0.4);
+}
+
+@keyframes pinPulse {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.5); opacity: 0; }
+}
+
+/* ==========================================================================
+   Dark Leaflet Popup Overrides
+   ========================================================================== */
+.dark-leaflet-popup .leaflet-popup-content-wrapper {
+  background: var(--surface-overlay) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+  border: 1px solid var(--border-default) !important;
+  border-radius: var(--radius-md) !important;
+  box-shadow: var(--shadow-xl) !important;
+  padding: 0 !important;
+  color: var(--text-primary) !important;
+}
+
+.dark-leaflet-popup .leaflet-popup-content {
+  margin: 0 !important;
+  line-height: inherit !important;
+}
+
+.dark-leaflet-popup .leaflet-popup-tip {
+  background: var(--surface-card) !important;
+  border: 1px solid var(--border-default) !important;
+}
+
+.dark-leaflet-popup a.leaflet-popup-close-button {
+  color: var(--text-secondary) !important;
+  padding: 8px !important;
+}
+
+.dark-leaflet-popup a.leaflet-popup-close-button:hover {
+  color: var(--accent-primary) !important;
+}
+
+.map-popup-card {
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.map-popup-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+}
+
+.map-popup-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin-top: 2px;
+}
+
+.map-popup-location {
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.map-popup-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.72rem;
+  color: var(--text-muted);
+}
+

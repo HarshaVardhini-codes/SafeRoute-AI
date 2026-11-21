@@ -1,0 +1,305 @@
+{
+  "_meta": {
+    "isDemoData": true,
+    "dataSource": "SafeRoute AI Simulated Navigation Dataset",
+    "notice": "All route options, geometry, safety ratings, street lighting scores, and incident listings are simulated demo data for frontend exploration. They do not represent verified real-world navigational safety guarantees."
+  },
+  "journeys": [
+    {
+      "id": "journey-indiranagar-cubbon",
+      "name": "Indiranagar to Cubbon Park",
+      "from": "Indiranagar, Bengaluru",
+      "to": "Cubbon Park, Bengaluru",
+      "startCoordinates": [12.9784, 77.6408],
+      "destinationCoordinates": [12.9763, 77.5929],
+      "routes": [
+        {
+          "id": "route-ic-01",
+          "name": "Primary Safe Corridor",
+          "category": "Recommended Safe Route",
+          "from": "Indiranagar, Bengaluru",
+          "to": "Cubbon Park, Bengaluru",
+          "distanceKm": 5.6,
+          "durationMinutes": 19,
+          "safetyScore": 94,
+          "safetyLevel": "safe",
+          "isSimulated": true,
+          "demoTag": "SIMULATED DEMO DATA",
+          "lighting": {
+            "score": "96%",
+            "rating": "Excellent",
+            "description": "Continuous LED municipal lighting with verified active CCTV monitoring along the main road."
+          },
+          "hazardCount": 0,
+          "hazards": [],
+          "summaryTags": [
+            "Well-lit Arterial",
+            "CCTV Monitored",
+            "Zero Hazards Reported",
+            "Pedestrian Walkway Intact"
+          ],
+          "coordinates": [
+            [12.9784, 77.6408],
+            [12.9768, 77.6365],
+            [12.9752, 77.6312],
+            [12.9739, 77.6258],
+            [12.9728, 77.6201],
+            [12.9721, 77.6148],
+            [12.9735, 77.6085],
+            [12.9749, 77.6026],
+            [12.9758, 77.5975],
+            [12.9763, 77.5929]
+          ]
+        },
+        {
+          "id": "route-ic-02",
+          "name": "Transit Arterial via Ulsoor",
+          "category": "Fastest Balanced Route",
+          "from": "Indiranagar, Bengaluru",
+          "to": "Cubbon Park, Bengaluru",
+          "distanceKm": 5.1,
+          "durationMinutes": 16,
+          "safetyScore": 81,
+          "safetyLevel": "safe",
+          "isSimulated": true,
+          "demoTag": "SIMULATED DEMO DATA",
+          "lighting": {
+            "score": "82%",
+            "rating": "Adequate",
+            "description": "Good lighting on primary segments; slight dimming near the lake peripheral curve."
+          },
+          "hazardCount": 1,
+          "hazards": [
+            {
+              "typeId": "heavy_traffic",
+              "category": "Heavy Traffic",
+              "severity": "low",
+              "description": "Peak evening vehicle bottleneck near Ulsoor Lake junction.",
+              "location": "Ulsoor Lake North Bank"
+            }
+          ],
+          "summaryTags": [
+            "Fastest Route",
+            "Moderate Evening Traffic",
+            "1 Minor Hazard",
+            "Adequate Lighting"
+          ],
+          "coordinates": [
+            [12.9784, 77.6408],
+            [12.9802, 77.6341],
+            [12.9818, 77.6272],
+            [12.9831, 77.6205],
+            [12.9825, 77.6136],
+            [12.9808, 77.6074],
+            [12.9792, 77.6015],
+            [12.9774, 77.5968],
+            [12.9763, 77.5929]
+          ]
+        },
+        {
+          "id": "route-ic-03",
+          "name": "Inner Bypass via Domlur Backway",
+          "category": "Direct / High Caution Route",
+          "from": "Indiranagar, Bengaluru",
+          "to": "Cubbon Park, Bengaluru",
+          "distanceKm": 4.8,
+          "durationMinutes": 17,
+          "safetyScore": 62,
+          "safetyLevel": "caution",
+          "isSimulated": true,
+          "demoTag": "SIMULATED DEMO DATA",
+          "lighting": {
+            "score": "54%",
+            "rating": "Poor",
+            "description": "Multiple dark stretches; 4 inactive municipal streetlamp poles reported along alleyway."
+          },
+          "hazardCount": 3,
+          "hazards": [
+            {
+              "typeId": "poor_lighting",
+              "category": "Poor Street Lighting",
+              "severity": "medium",
+              "description": "4 consecutive streetlamps unlit between 6th and 8th Cross.",
+              "location": "8th Main Road, 4th Block"
+            },
+            {
+              "typeId": "broken_sidewalk",
+              "category": "Broken Sidewalk",
+              "severity": "low",
+              "description": "Open drainage utility trench obstructing pedestrian side path.",
+              "location": "Service Road near Substation"
+            },
+            {
+              "typeId": "isolated_area",
+              "category": "Isolated Area",
+              "severity": "high",
+              "description": "Deserted access lane with low pedestrian activity after 8 PM.",
+              "location": "Underpass connecting lane"
+            }
+          ],
+          "summaryTags": [
+            "Shortest Distance",
+            "3 Hazards Reported",
+            "Dark Alleys",
+            "High Caution"
+          ],
+          "coordinates": [
+            [12.9784, 77.6408],
+            [12.9742, 77.6382],
+            [12.9698, 77.6315],
+            [12.9682, 77.6231],
+            [12.9695, 77.6145],
+            [12.9712, 77.6062],
+            [12.9734, 77.5998],
+            [12.9763, 77.5929]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "journey-mgroad-lalbagh",
+      "name": "MG Road to Lalbagh Botanical Garden",
+      "from": "MG Road, Bengaluru",
+      "to": "Lalbagh Botanical Garden, Bengaluru",
+      "startCoordinates": [12.9756, 77.6066],
+      "destinationCoordinates": [12.9507, 77.5848],
+      "routes": [
+        {
+          "id": "route-ml-01",
+          "name": "Boulevard Safe Route",
+          "category": "Recommended Safe Route",
+          "from": "MG Road, Bengaluru",
+          "to": "Lalbagh Botanical Garden, Bengaluru",
+          "distanceKm": 4.6,
+          "durationMinutes": 16,
+          "safetyScore": 92,
+          "safetyLevel": "safe",
+          "isSimulated": true,
+          "demoTag": "SIMULATED DEMO DATA",
+          "lighting": {
+            "score": "94%",
+            "rating": "Excellent",
+            "description": "Bright continuous commercial streetlights through prominent arterial corridors."
+          },
+          "hazardCount": 0,
+          "hazards": [],
+          "summaryTags": [
+            "Well-lit Arterial",
+            "Active Police Patrol",
+            "Wide Sidewalks",
+            "Zero Hazards"
+          ],
+          "coordinates": [
+            [12.9756, 77.6066],
+            [12.9728, 77.6045],
+            [12.9692, 77.6015],
+            [12.9660, 77.5982],
+            [12.9625, 77.5948],
+            [12.9585, 77.5915],
+            [12.9548, 77.5880],
+            [12.9507, 77.5848]
+          ]
+        },
+        {
+          "id": "route-ml-02",
+          "name": "Double Road Arterial",
+          "category": "Fastest Balanced Route",
+          "from": "MG Road, Bengaluru",
+          "to": "Lalbagh Botanical Garden, Bengaluru",
+          "distanceKm": 4.1,
+          "durationMinutes": 14,
+          "safetyScore": 79,
+          "safetyLevel": "safe",
+          "isSimulated": true,
+          "demoTag": "SIMULATED DEMO DATA",
+          "lighting": {
+            "score": "76%",
+            "rating": "Moderate",
+            "description": "Moderate lighting on flyover stretches; slight shadow beneath elevated flyover ramps."
+          },
+          "hazardCount": 1,
+          "hazards": [
+            {
+              "typeId": "waterlogging",
+              "category": "Waterlogging",
+              "severity": "medium",
+              "description": "Localized water stagnation (4-6 inches) under Double Road flyover pillar 12.",
+              "location": "KH Road Flyover Junction"
+            }
+          ],
+          "summaryTags": [
+            "Fastest Travel Time",
+            "Flyover Corridor",
+            "1 Hazard (Waterlogging)",
+            "Moderate Lighting"
+          ],
+          "coordinates": [
+            [12.9756, 77.6066],
+            [12.9705, 77.6035],
+            [12.9658, 77.5998],
+            [12.9610, 77.5952],
+            [12.9562, 77.5901],
+            [12.9507, 77.5848]
+          ]
+        },
+        {
+          "id": "route-ml-03",
+          "name": "Market Direct Cut-Through",
+          "category": "Direct / High Caution Route",
+          "from": "MG Road, Bengaluru",
+          "to": "Lalbagh Botanical Garden, Bengaluru",
+          "distanceKm": 3.7,
+          "durationMinutes": 18,
+          "safetyScore": 58,
+          "safetyLevel": "caution",
+          "isSimulated": true,
+          "demoTag": "SIMULATED DEMO DATA",
+          "lighting": {
+            "score": "46%",
+            "rating": "Poor",
+            "description": "Dim street lighting and frequent unlit shadows between warehouse market buildings."
+          },
+          "hazardCount": 3,
+          "hazards": [
+            {
+              "typeId": "unsafe_crossing",
+              "category": "Unsafe Pedestrian Crossing",
+              "severity": "medium",
+              "description": "Faded zebra crossing with high auto-rickshaw turning volume.",
+              "location": "Market Gate 2 Cross"
+            },
+            {
+              "typeId": "broken_sidewalk",
+              "category": "Broken Sidewalk",
+              "severity": "low",
+              "description": "Damaged pavement slabs with exposed construction sand heaps.",
+              "location": "Siddapura Hospital Lane"
+            },
+            {
+              "typeId": "poor_lighting",
+              "category": "Poor Street Lighting",
+              "severity": "medium",
+              "description": "Cluster of 3 broken streetlamps near loading bay.",
+              "location": "Wholesale Market Road"
+            }
+          ],
+          "summaryTags": [
+            "Shortest Distance",
+            "Congested Market Lane",
+            "3 Active Hazards",
+            "High Caution"
+          ],
+          "coordinates": [
+            [12.9756, 77.6066],
+            [12.9715, 77.5995],
+            [12.9672, 77.5938],
+            [12.9620, 77.5892],
+            [12.9568, 77.5865],
+            [12.9507, 77.5848]
+          ]
+        }
+      ]
+    }
+  ]
+}
+

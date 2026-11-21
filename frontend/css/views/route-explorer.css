@@ -1,0 +1,688 @@
+/**
+ * SafeRoute AI - Route Explorer View Styles
+ * Modern, responsive 2-column SaaS layout for route comparison and interactive navigation
+ */
+
+/* ==========================================================================
+   Page Container & Header
+   ========================================================================== */
+.route-explorer-page {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  animation: fadeIn 0.25s ease-in-out;
+}
+
+.explorer-header {
+  margin-bottom: var(--space-xs);
+}
+
+.explorer-header-tag {
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-xs);
+}
+
+.explorer-title {
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: -0.03em;
+  color: var(--text-primary);
+  margin-bottom: var(--space-2xs);
+}
+
+.explorer-subtitle {
+  font-size: var(--font-size-sm);
+  color: var(--text-secondary);
+  max-width: 720px;
+  line-height: var(--line-height-relaxed);
+}
+
+/* ==========================================================================
+   Two-Column Explorer Layout (Desktop)
+   ========================================================================== */
+.explorer-layout {
+  display: grid;
+  grid-template-columns: minmax(360px, 440px) minmax(0, 1fr);
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+@media (max-width: 992px) {
+  .explorer-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Left Panel: Sidebar (Search + Comparison Cards)
+   ========================================================================== */
+.explorer-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+/* Search Card */
+.explorer-search-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.explorer-search-card:hover {
+  border-color: var(--border-default);
+}
+
+.explorer-search-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2xs);
+}
+
+.explorer-search-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.explorer-inputs-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  position: relative;
+}
+
+.explorer-field-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.explorer-field-icon {
+  position: absolute;
+  left: 14px;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.explorer-field-icon.start {
+  color: var(--accent-primary);
+}
+
+.explorer-field-icon.dest {
+  color: var(--hazard-danger);
+}
+
+.explorer-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 40px 0 44px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-primary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: all var(--transition-fast);
+}
+
+.explorer-input:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px var(--accent-primary-subtle);
+  background: var(--bg-app);
+}
+
+.explorer-input.has-error {
+  border-color: var(--hazard-danger);
+  box-shadow: 0 0 0 3px var(--hazard-danger-glow);
+}
+
+/* Swap button between inputs */
+.btn-swap-explorer {
+  align-self: center;
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  margin: -6px 0;
+  z-index: 2;
+  transition: all var(--transition-fast);
+}
+
+.btn-swap-explorer:hover {
+  color: var(--accent-primary);
+  border-color: var(--border-emerald);
+  transform: rotate(180deg);
+  background: var(--surface-card-hover);
+}
+
+/* Find Routes action button */
+.btn-find-routes {
+  width: 100%;
+  height: 48px;
+  background: var(--accent-primary);
+  color: var(--text-inverse);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-md);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  cursor: pointer;
+  border: none;
+  box-shadow: var(--shadow-emerald);
+  transition: all var(--transition-fast);
+  margin-top: var(--space-2xs);
+}
+
+.btn-find-routes:hover {
+  background: var(--accent-primary-light);
+  box-shadow: 0 6px 20px var(--accent-primary-glow);
+  transform: translateY(-1px);
+}
+
+.btn-find-routes:active {
+  transform: translateY(0);
+}
+
+/* Quick sample query pills */
+.explorer-quick-queries {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  margin-top: var(--space-2xs);
+  font-size: var(--font-size-xs);
+  color: var(--text-muted);
+}
+
+.explorer-quick-pill {
+  background: var(--surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 3px 10px;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.explorer-quick-pill:hover {
+  border-color: var(--border-emerald);
+  color: var(--accent-primary-light);
+  background: var(--accent-primary-subtle);
+}
+
+/* Validation Feedback message */
+.explorer-validation-msg {
+  display: none;
+  align-items: center;
+  gap: var(--space-xs);
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+.explorer-validation-msg.error {
+  display: flex;
+  background: var(--hazard-danger-bg);
+  color: #FCA5A5;
+  border: 1px solid var(--border-danger);
+}
+
+.explorer-validation-msg.success {
+  display: flex;
+  background: var(--hazard-safe-bg);
+  color: var(--accent-primary-light);
+  border: 1px solid var(--border-emerald);
+}
+
+/* ==========================================================================
+   Route Comparison Cards Section
+   ========================================================================== */
+.routes-comparison-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.routes-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-2xs);
+}
+
+.routes-section-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.routes-cards-stack {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Individual Route Comparison Card */
+.route-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: var(--space-md) var(--space-lg);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.route-card:hover {
+  background: var(--surface-card-hover);
+  border-color: var(--border-default);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* Selected Card Highlight */
+.route-card.selected {
+  background: var(--surface-elevated);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 1px var(--accent-primary), var(--shadow-emerald);
+}
+
+/* Category Accent Indicator (Left vertical bar) */
+.route-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--border-default);
+  transition: all var(--transition-fast);
+}
+
+.route-card.recommended::before {
+  background: var(--accent-primary);
+}
+
+.route-card.balanced::before {
+  background: var(--color-info);
+}
+
+.route-card.caution::before {
+  background: var(--hazard-caution);
+}
+
+/* Route Card Header */
+.route-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xs);
+}
+
+.route-category-tag {
+  font-size: 0.72rem;
+  font-weight: var(--font-weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.route-card.recommended .route-category-tag {
+  color: var(--accent-primary-light);
+}
+
+.route-card.balanced .route-category-tag {
+  color: #7DD3FC;
+}
+
+.route-card.caution .route-category-tag {
+  color: var(--hazard-caution);
+}
+
+/* Route Title and Primary Metrics */
+.route-card-main {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-sm);
+}
+
+.route-title-group {
+  flex: 1;
+  min-width: 0;
+}
+
+.route-card-name {
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  line-height: var(--line-height-tight);
+}
+
+.route-card-submetrics {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin-top: 4px;
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.route-card-submetrics strong {
+  color: var(--text-primary);
+}
+
+/* Safety Score Gauge Box */
+.route-score-box {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  flex-shrink: 0;
+}
+
+.score-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 2px;
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--font-size-md);
+  line-height: 1;
+}
+
+.score-badge.safe {
+  background: var(--hazard-safe-bg);
+  color: var(--accent-primary-light);
+  border: 1px solid var(--border-emerald);
+}
+
+.score-badge.moderate {
+  background: var(--color-info-bg);
+  color: #7DD3FC;
+  border: 1px solid rgba(59, 130, 246, 0.35);
+}
+
+.score-badge.caution {
+  background: var(--hazard-caution-bg);
+  color: var(--hazard-caution);
+  border: 1px solid var(--border-caution);
+}
+
+.score-badge-label {
+  font-size: 0.68rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-top: 2px;
+  letter-spacing: 0.04em;
+}
+
+/* Route Details Grid (Lighting & Hazards) */
+.route-details-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-xs);
+  padding: var(--space-xs) 0;
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.route-detail-cell {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.route-detail-cell strong {
+  color: var(--text-primary);
+}
+
+.route-detail-icon {
+  width: 22px;
+  height: 22px;
+  border-radius: var(--radius-xs);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.route-detail-icon.lighting {
+  background: var(--accent-primary-subtle);
+  color: var(--accent-primary);
+}
+
+.route-detail-icon.hazards-safe {
+  background: var(--hazard-safe-bg);
+  color: var(--accent-primary-light);
+}
+
+.route-detail-icon.hazards-warn {
+  background: var(--hazard-caution-bg);
+  color: var(--hazard-caution);
+}
+
+/* Hazard tags preview */
+.route-tags-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+
+.route-tag-chip {
+  font-size: 0.7rem;
+  padding: 2px 7px;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+}
+
+/* Card Selection Button */
+.route-card-action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: var(--space-2xs);
+}
+
+.btn-select-route {
+  width: 100%;
+  height: 36px;
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-medium);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  border: 1px solid var(--border-default);
+  background: var(--surface-card);
+  color: var(--text-secondary);
+}
+
+.btn-select-route:hover {
+  background: var(--surface-card-hover);
+  border-color: var(--border-emerald);
+  color: var(--text-primary);
+}
+
+.route-card.selected .btn-select-route {
+  background: var(--accent-primary-subtle);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary-light);
+  font-weight: var(--font-weight-semibold);
+  box-shadow: 0 0 10px var(--accent-primary-glow);
+}
+
+/* ==========================================================================
+   Right Panel: Map Section
+   ========================================================================== */
+.explorer-map-container {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.explorer-map-card {
+  background: var(--surface-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  position: sticky;
+  top: calc(var(--header-height) + var(--space-md));
+}
+
+.explorer-map-header {
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--surface-card);
+}
+
+.explorer-map-title {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  display: flex;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.explorer-map-canvas-wrapper {
+  position: relative;
+  width: 100%;
+  height: 580px;
+  min-height: 480px;
+  background: var(--bg-app);
+}
+
+#route-explorer-map {
+  width: 100%;
+  height: 100%;
+  z-index: var(--z-map);
+}
+
+@media (max-width: 992px) {
+  .explorer-map-card {
+    position: static;
+  }
+  
+  .explorer-map-canvas-wrapper {
+    height: 420px;
+    min-height: 360px;
+  }
+}
+
+@media (max-width: 580px) {
+  .explorer-map-canvas-wrapper {
+    height: 340px;
+    min-height: 300px;
+  }
+}
+
+/* Map Legend Bar */
+.explorer-map-legend {
+  padding: var(--space-sm) var(--space-lg);
+  background: var(--surface-elevated);
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  font-size: var(--font-size-xs);
+  color: var(--text-secondary);
+}
+
+.explorer-legend-items {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.explorer-legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.route-legend-line {
+  width: 18px;
+  height: 4px;
+  border-radius: var(--radius-full);
+  display: inline-block;
+}
+
+.route-legend-line.selected {
+  background: var(--accent-primary);
+  box-shadow: 0 0 8px var(--accent-primary-glow);
+}
+
+.route-legend-line.alternative {
+  background: #64748B;
+}
+
+.route-legend-line.caution {
+  background: var(--hazard-caution);
+}
+
+/* Leaflet Dark Tooltip Override */
+.leaflet-dark-tooltip {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+
+.leaflet-dark-tooltip::before {
+  display: none !important;
+}
+
