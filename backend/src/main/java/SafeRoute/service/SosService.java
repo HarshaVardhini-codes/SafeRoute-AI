@@ -58,8 +58,11 @@ public class SosService {
         List<EmergencyContact> contacts = emergencyContactRepository.findByUserId(user.getId());
         List<NotifiedContactSummary> notifiedSummaries = emergencyNotificationService.notifyContacts(savedEvent, contacts);
 
-        // Update with actual verified notification count (zero if gateway not active)
-        savedEvent.setContactsNotifiedCount(notifiedSummaries.size());
+        // Update with actual verified notification count (zero if gateway not active or failed)
+        long successfulCount = notifiedSummaries != null
+                ? notifiedSummaries.stream().filter(s -> "SENT".equalsIgnoreCase(s.getNotificationStatus())).count()
+                : 0;
+        savedEvent.setContactsNotifiedCount((int) successfulCount);
         sosEventRepository.save(savedEvent);
 
         return mapToResponse(savedEvent, notifiedSummaries);
